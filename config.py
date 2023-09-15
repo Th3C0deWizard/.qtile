@@ -81,7 +81,7 @@ keys = [
     Key(
         [mod],
         "e",
-        lazy.spawn("alacritty --command nvim"),
+        lazy.spawn("subl"),
         desc="Launch neovim in a new window",
     ),
     Key(
@@ -137,7 +137,7 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 ]
 
-groups = [Group(i) for i in ["󰣇", "", "", ""]]
+groups = [Group(i) for i in ["","󰣇", "", "", "",""]]
 
 for i, group in enumerate(groups):
     workspace_number = str(i + 1)
@@ -181,8 +181,8 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="sourcecodepro",
-    fontsize=16,
+    font="JetBrainsMonoNL Nerd Font",
+    fontsize=15,
     padding=8,
 )
 extension_defaults = widget_defaults.copy()
