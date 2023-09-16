@@ -102,6 +102,12 @@ keys = [
     Key([mod], "s", lazy.spawn("gnome-screenshot -i"), desc="Launch gnome-screenshot"),
     Key(
         [],
+        "XF86AudioMute",
+        lazy.spawn("pamixer -t"),
+        desc="Mute Volume",
+    ),
+    Key(
+        [],
         "XF86MonBrightnessUp",
         lazy.spawn("brightnessctl set +10%"),
         desc="Increase Brightness",
