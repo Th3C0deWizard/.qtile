@@ -102,24 +102,6 @@ keys = [
     Key([mod], "s", lazy.spawn("gnome-screenshot -i"), desc="Launch gnome-screenshot"),
     Key(
         [],
-        "XF86AudioRaiseVolume",
-        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
-        desc="Raise Volume",
-    ),
-    Key(
-        [],
-        "XF86AudioLowerVolume",
-        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
-        desc="Lower Volume",
-    ),
-    Key(
-        [],
-        "XF86AudioMute",
-        lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"),
-        desc="Mute Volume",
-    ),
-    Key(
-        [],
         "XF86MonBrightnessUp",
         lazy.spawn("brightnessctl set +10%"),
         desc="Increase Brightness",
@@ -137,7 +119,7 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 ]
 
-groups = [Group(i) for i in ["","󰣇", "", "", "",""]]
+groups = [Group(i) for i in ["", "󰣇", "", "", "", ""]]
 
 for i, group in enumerate(groups):
     workspace_number = str(i + 1)
