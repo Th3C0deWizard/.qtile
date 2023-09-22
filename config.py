@@ -32,7 +32,6 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 mod = "mod4"
-terminal = guess_terminal()
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -82,7 +81,7 @@ keys = [
         [mod],
         "e",
         lazy.spawn("subl"),
-        desc="Launch neovim in a new window",
+        desc="launch subl",
     ),
     Key(
         [mod],
@@ -117,6 +116,17 @@ keys = [
         "XF86MonBrightnessDown",
         lazy.spawn("brightnessctl set 10%-"),
         desc="Decrease Brightness",
+    ),
+    Key(
+        [mod],
+        "c",
+        lazy.spawn("alacritty --command nvim /home/cheto59/.config/qtile/config.py"),
+        desc="Open Qtile configuration file",
+    ),
+    Key(
+        [mod],
+        "v",
+        lazy.spawn("alacritty --working-directory /home/cheto59/Dev/vagrant/backendclass/ "),
     ),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
