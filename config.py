@@ -71,6 +71,8 @@ keys = [
     ),
     Key([mod], "Return", lazy.spawn("alacritty"), desc="Launch terminal"),
     # Personal keybindings
+    Key([mod], "r", lazy.spawn("redshift -O 4000"), desc="turn on redshift"),
+    Key([mod, "shift"], "r", lazy.spawn("redshift -x"), desc="turn off redshift"),
     Key(
         [mod],
         "space",
@@ -126,7 +128,7 @@ keys = [
     Key(
         [mod],
         "v",
-        lazy.spawn("alacritty --working-directory /home/cheto59/Dev/vagrant/backendclass/ "),
+        lazy.spawn("alacritty --working-directory /home/cheto59/Dev/vagrant/backendclass/"),
     ),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
