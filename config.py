@@ -130,6 +130,21 @@ keys = [
         "v",
         lazy.spawn("alacritty --working-directory /home/cheto59/Dev/vagrant/backendclass/"),
     ),
+    Key(
+        [mod],
+        "o",
+        lazy.spawn("alacritty --working-directory /home/cheto59/Dev/web/belicodersProject/belicoders_REST_API/"),
+    ),
+    Key(
+        [mod],
+        "i",
+        lazy.spawn("alacritty --working-directory /home/cheto59/Dev/web/belicodersProject/belicoders/"),
+    ),
+    Key(
+        [mod],
+        "u",
+        lazy.spawn("keepassxc"),
+    ),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
@@ -180,11 +195,7 @@ layouts = [
     # layout.Zoomy(),
 ]
 
-widget_defaults = dict(
-    font="JetBrainsMonoNL Nerd Font",
-    fontsize=15,
-    padding=8,
-)
+widget_defaults = dict(font="JetBrainsMonoNL Nerd Font", fontsize=15, padding=8, foreground="#a6e3a1")
 extension_defaults = widget_defaults.copy()
 
 layout_decor = {
@@ -203,14 +214,13 @@ layout_decor = {
 }
 
 group_box_decor = {
-    "decorations": [RectDecoration(colour="#44475a", filled=True, group=True, line_width=0.6)],
+    "decorations": [RectDecoration(colour="#313244", filled=True, group=True, line_width=0.6)],
     "disable_drag": True,
     "padding": 10,
     "fontsize": 30,
-    "block_highlight_text_color": "#ff79c6",
+    "block_highlight_text_color": "#cba6f7",
     "this_current_screen_border": "#44475a",
     "this_screen_border": "#44475a",
-    "highlight_method": "border",
     "active": "#fff",
     "foreground": "#fff",
     "inactive": "#fff",
@@ -233,7 +243,7 @@ screens = [
             ],
             30,
             opacity=1,
-            background="#282a36",
+            background="#181825",
             margin=6,
             # border_width=[1, 1, 1, 1],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
