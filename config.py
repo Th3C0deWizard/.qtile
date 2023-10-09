@@ -43,7 +43,9 @@ keys = [
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
+    Key(
+        [mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"
+    ),
     Key(
         [mod, "shift"],
         "l",
@@ -55,7 +57,9 @@ keys = [
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
     Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
-    Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
+    Key(
+        [mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"
+    ),
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
@@ -128,17 +132,23 @@ keys = [
     Key(
         [mod],
         "v",
-        lazy.spawn("alacritty --working-directory /home/cheto59/Dev/vagrant/backendclass/"),
+        lazy.spawn(
+            "alacritty --working-directory /home/cheto59/Dev/vagrant/backendclass/"
+        ),
     ),
     Key(
         [mod],
         "o",
-        lazy.spawn("alacritty --working-directory /home/cheto59/Dev/web/belicodersProject/belicoders_REST_API/"),
+        lazy.spawn(
+            "alacritty --working-directory /home/cheto59/Dev/web/belicodersProject/belicoders_REST_API/"
+        ),
     ),
     Key(
         [mod],
         "i",
-        lazy.spawn("alacritty --working-directory /home/cheto59/Dev/web/belicodersProject/belicoders/"),
+        lazy.spawn(
+            "alacritty --working-directory /home/cheto59/Dev/web/belicodersProject/belicoders/"
+        ),
     ),
     Key(
         [mod],
@@ -181,7 +191,9 @@ for i, group in enumerate(groups):
 
 layouts = [
     layout.Max(margin=15),
-    layout.Columns(border_normal="#060606", border_focus="#5683a4", border_width=5, margin=4),
+    layout.Columns(
+        border_normal="#060606", border_focus="#5683a4", border_width=5, margin=4
+    ),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -195,32 +207,45 @@ layouts = [
     # layout.Zoomy(),
 ]
 
-widget_defaults = dict(font="JetBrainsMonoNL Nerd Font", fontsize=15, padding=8, foreground="#a6e3a1")
+widget_defaults = dict(
+    font="JetBrainsMonoNL Nerd Font", fontsize=15, padding=8, foreground="#a6e3a1"
+)
 extension_defaults = widget_defaults.copy()
 
 layout_decor = {
     "decorations": [
         RectDecoration(
-            colour="#6272a4",
+            colour="#4c4f69",
             radius=5,
             filled=True,
-            padding_y=0,
-            padding_x=0,
-            line_width=0.6,
+            padding_y=1,
+            padding_x=1,
         )
     ],
     "padding": 35,
-    "fontsize": 20,
+    "fontsize": 18,
+    "foreground": "#e78284",
 }
 
+rect_decor = {
+    "decorations": [
+        RectDecoration(
+            colour="#313244",
+            radius=5,
+            filled=True,
+        )
+    ]
+}
+
+
 group_box_decor = {
-    "decorations": [RectDecoration(colour="#313244", filled=True, group=True, line_width=0.6)],
+    **rect_decor,
     "disable_drag": True,
     "padding": 10,
-    "fontsize": 30,
+    "fontsize": 25,
     "block_highlight_text_color": "#cba6f7",
-    "this_current_screen_border": "#44475a",
-    "this_screen_border": "#44475a",
+    "this_current_screen_border": "#313244",
+    "this_screen_border": "#313244",
     "active": "#fff",
     "foreground": "#fff",
     "inactive": "#fff",
@@ -238,8 +263,8 @@ screens = [
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Spacer(),
-                widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+                widget.Systray(**group_box_decor),
+                widget.Clock(**rect_decor, format="%Y-%m-%d %a %I:%M %p", fontsize=16),
             ],
             30,
             opacity=1,
@@ -259,7 +284,9 @@ mouse = [
         lazy.window.set_position_floating(),
         start=lazy.window.get_position(),
     ),
-    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Drag(
+        [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
+    ),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
