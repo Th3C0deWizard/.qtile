@@ -126,7 +126,9 @@ keys = [
     Key(
         [mod],
         "c",
-        lazy.spawn("alacritty --command nvim /home/cheto59/.config/qtile/config.py"),
+        lazy.spawn(
+            "alacritty --working-directory /home/cheto59/.config/qtile --command nvim config.py"
+        ),
         desc="Open Qtile configuration file",
     ),
     Key(
@@ -192,7 +194,10 @@ for i, group in enumerate(groups):
 layouts = [
     layout.Max(margin=15),
     layout.Columns(
-        border_normal="#060606", border_focus="#5683a4", border_width=5, margin=4
+        border_normal="#060606",
+        border_focus="#5683a4",
+        border_width=5,
+        margin=8,
     ),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
