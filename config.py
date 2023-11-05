@@ -195,8 +195,8 @@ layouts = [
     layout.Max(margin=15),
     layout.Columns(
         border_normal="#060606",
-        border_focus="#5683a4",
-        border_width=5,
+        border_focus="#ca9ee6",
+        border_width=3,
         margin=8,
     ),
     # Try more layouts by unleashing below layouts.
