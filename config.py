@@ -74,6 +74,12 @@ keys = [
         desc="Toggle between split and unsplit sides of stack",
     ),
     Key([mod], "Return", lazy.spawn("alacritty"), desc="Launch terminal"),
+    Key(
+        [mod],
+        "f",
+        lazy.window.toggle_fullscreen(),
+        desc="Toggle fullscreen",
+    ),
     # Personal keybindings
     Key([mod], "r", lazy.spawn("redshift -O 4000"), desc="turn on redshift"),
     Key([mod, "shift"], "r", lazy.spawn("redshift -x"), desc="turn off redshift"),
