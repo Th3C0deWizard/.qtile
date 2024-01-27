@@ -109,8 +109,10 @@ keys = [
         lazy.spawn("alacritty --command ranger"),
         desc="Launch ranger file manager",
     ),
-    Key([mod], "t", lazy.spawn("thunar"), desc="Launch thunar file manager"),
-    Key([mod], "s", lazy.spawn("gnome-screenshot -i"), desc="Launch gnome-screenshot"),
+    Key([mod], "t", lazy.spawn("alacritty -e yazi"), desc="Launch yazi file manager"),
+    Key(
+        [mod], "s", lazy.spawn("gnome-screenshot -i -c"), desc="Launch gnome-screenshot"
+    ),
     Key(
         [],
         "XF86AudioMute",
@@ -280,7 +282,7 @@ screens = [
             30,
             opacity=1,
             background="#181825",
-            margin=6,
+            margin=0,
             # border_width=[1, 1, 1, 1],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
