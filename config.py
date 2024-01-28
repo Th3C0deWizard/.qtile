@@ -86,7 +86,7 @@ keys = [
     Key(
         [mod],
         "space",
-        lazy.spawn("rofi -show window -modi window"),
+        lazy.spawn("/home/cheto59/.config/rofi/scripts/launcher_t1_windows"),
         desc="look for a window to switch",
     ),
     Key(
@@ -101,7 +101,12 @@ keys = [
         lazy.spawn("alacritty --command btm"),
         desc="Launch bottom terminal process",
     ),
-    Key([mod], "m", lazy.spawn("rofi -show drun"), desc="Launch terminal"),
+    Key(
+        [mod],
+        "m",
+        lazy.spawn("/home/cheto59/.config/rofi/scripts/launcher_t1"),
+        desc="Launch terminal",
+    ),
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch Browser"),
     Key(
         [mod],
