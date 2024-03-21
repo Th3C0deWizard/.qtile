@@ -115,9 +115,7 @@ keys = [
         desc="Launch ranger file manager",
     ),
     Key([mod], "t", lazy.spawn("alacritty -e yazi"), desc="Launch yazi file manager"),
-    Key(
-        [mod], "s", lazy.spawn("gnome-screenshot -i -c"), desc="Launch gnome-screenshot"
-    ),
+    Key([mod], "s", lazy.spawn("gnome-screenshot -i"), desc="Launch gnome-screenshot"),
     Key(
         [],
         "XF86AudioMute",
