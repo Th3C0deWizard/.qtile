@@ -24,14 +24,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile import bar, layout
-from qtile_extras import widget
-from qtile_extras.widget.decorations import RectDecoration
+from libqtile import bar, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 mod = "mod4"
+terminal = guess_terminal()
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -142,6 +141,15 @@ keys = [
         ),
         desc="Open Qtile configuration file",
     ),
+        Key(
+        [mod],
+        "n",
+        lazy.spawn(
+            "alacritty --working-directory /home/cheto59/notes --command nvim"
+        ),
+        desc="Open Qtile configuration file",
+    ),
+
     Key(
         [mod],
         "v",
@@ -153,14 +161,14 @@ keys = [
         [mod],
         "o",
         lazy.spawn(
-            "alacritty --working-directory /home/cheto59/Dev/web/belicodersProject/belicoders_REST_API/"
+            "/home/cheto59/go/bin/scripts/eventsApp.sh", shell = True
         ),
     ),
     Key(
         [mod],
         "i",
         lazy.spawn(
-            "alacritty --working-directory /home/cheto59/Dev/web/belicodersProject/belicoders/"
+            "alacritty -e /home/cheto59/go/bin/project-launcher", shell = True
         ),
     ),
     Key(
@@ -203,18 +211,13 @@ for i, group in enumerate(groups):
     )
 
 layouts = [
-    layout.Max(margin=15),
-    layout.Columns(
-        border_normal="#060606",
-        border_focus="#ca9ee6",
-        border_width=3,
-        margin=8,
-    ),
+    layout.Max(),
+    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    # layout.MonadTall(margin = 20),
+    # layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -224,85 +227,45 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="JetBrainsMonoNL Nerd Font", fontsize=15, padding=8, foreground="#a6e3a1"
+    font="sans",
+    fontsize=12,
+    padding=3,
 )
 extension_defaults = widget_defaults.copy()
-
-layout_decor = {
-    "decorations": [
-        RectDecoration(
-            colour="#4c4f69",
-            radius=5,
-            filled=True,
-            padding_y=1,
-            padding_x=1,
-        )
-    ],
-    "padding": 35,
-    "fontsize": 18,
-    "foreground": "#e78284",
-}
-
-rect_decor = {
-    "decorations": [
-        RectDecoration(
-            colour="#313244",
-            radius=5,
-            filled=True,
-        )
-    ]
-}
-
-
-group_box_decor = {
-    **rect_decor,
-    "disable_drag": True,
-    "padding": 10,
-    "fontsize": 25,
-    "block_highlight_text_color": "#cba6f7",
-    "this_current_screen_border": "#313244",
-    "this_screen_border": "#313244",
-    "active": "#fff",
-    "foreground": "#fff",
-    "inactive": "#fff",
-    "border_width": 0,
-}
 
 screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayout(**layout_decor),
-                widget.GroupBox(
-                    **group_box_decor,
+                widget.CurrentLayout(),
+                widget.GroupBox(disable_drag = True),
+                widget.WindowName(),
+                widget.Chord(
+                    chords_colors={
+                        "launch": ("#ff0000", "#ffffff"),
+                    },
+                    name_transform=lambda name: name.upper(),
                 ),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
-                widget.Spacer(),
-                widget.Systray(**group_box_decor),
-                widget.Clock(**rect_decor, format="%Y-%m-%d %a %I:%M %p", fontsize=16),
+                widget.Systray(),
+                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
             ],
-            30,
-            opacity=1,
-            background="#181825",
-            margin=0,
-            # border_width=[1, 1, 1, 1],  # Draw top and bottom borders
+            24,
+            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
+        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
+        # By default we handle these events delayed to already improve performance, however your system might still be struggling
+        # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
+        # x11_drag_polling_rate = 60,
     ),
 ]
 
 # Drag floating layouts.
 mouse = [
-    Drag(
-        [mod],
-        "Button1",
-        lazy.window.set_position_floating(),
-        start=lazy.window.get_position(),
-    ),
-    Drag(
-        [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
-    ),
+    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
+    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
@@ -310,6 +273,7 @@ dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
 bring_front_click = False
+floats_kept_above = True
 cursor_warp = False
 floating_layout = layout.Floating(
     float_rules=[
