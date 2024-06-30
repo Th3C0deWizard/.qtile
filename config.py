@@ -80,7 +80,7 @@ keys = [
         desc="Toggle fullscreen",
     ),
     # Personal keybindings
-    Key([mod], "r", lazy.spawn("redshift -O 4000"), desc="turn on redshift"),
+    Key([mod], "r", lazy.spawn("redshift -O 5000"), desc="turn on redshift"),
     Key([mod, "shift"], "r", lazy.spawn("redshift -x"), desc="turn off redshift"),
     Key(
         [mod],
@@ -91,8 +91,8 @@ keys = [
     Key(
         [mod],
         "e",
-        lazy.spawn("subl"),
-        desc="launch subl",
+        lazy.spawn("alacritty --command nvim"),
+        desc="launch neovim",
     ),
     Key(
         [mod],
@@ -110,10 +110,9 @@ keys = [
     Key(
         [mod],
         "d",
-        lazy.spawn("alacritty --command ranger"),
+        lazy.spawn("alacritty --command yazi"),
         desc="Launch ranger file manager",
     ),
-    Key([mod], "t", lazy.spawn("alacritty -e yazi"), desc="Launch yazi file manager"),
     Key([mod], "s", lazy.spawn("gnome-screenshot -i"), desc="Launch gnome-screenshot"),
     Key(
         [],
@@ -149,21 +148,6 @@ keys = [
         ),
         desc="Open Qtile configuration file",
     ),
-
-    Key(
-        [mod],
-        "v",
-        lazy.spawn(
-            "alacritty --working-directory /home/cheto59/Dev/vagrant/backendclass/"
-        ),
-    ),
-    Key(
-        [mod],
-        "o",
-        lazy.spawn(
-            "/home/cheto59/go/bin/scripts/eventsApp.sh", shell = True
-        ),
-    ),
     Key(
         [mod],
         "i",
@@ -183,7 +167,7 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 ]
 
-groups = [Group(i) for i in ["", "󰣇", "", "", "", ""]]
+groups = [Group(i) for i in ["", "", "󰣇", "", "", ""]]
 
 for i, group in enumerate(groups):
     workspace_number = str(i + 1)
@@ -212,7 +196,7 @@ for i, group in enumerate(groups):
 
 layouts = [
     layout.Max(),
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    layout.Columns(border_focus="#fab387", border_normal="#11111b", border_width=4),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -228,8 +212,8 @@ layouts = [
 
 widget_defaults = dict(
     font="sans",
-    fontsize=12,
-    padding=3,
+    fontsize=14,
+    padding=4,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -237,21 +221,17 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayout(),
-                widget.GroupBox(disable_drag = True),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
+                widget.CurrentLayout(background="#a6e3a1",foreground="#000"),
+                widget.GroupBox(background="#1e1e2e", disable_drag = True, active="#cba6f7", fontsize=16, hide_unused=True, block_highlight_text_color="#f38ba8", borderwidth=1),
+                widget.WindowName(foreground="#f38ba8", max_chars=100, scroll=True, fontsize=15),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
-                widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+                widget.Systray(background="#1e1e2e", icon_size=25),
+                widget.Clock(background="#181825",foreground="#a6e3a1", fontsize=15,format="%Y-%m-%d %a %I:%M %p"),
             ],
-            24,
+            23,
+            background = "#11111b",
+            foreground = "#000",
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
