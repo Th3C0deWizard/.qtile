@@ -28,6 +28,7 @@ from libqtile import bar, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from os.path import expanduser
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -140,20 +141,17 @@ keys = [
         ),
         desc="Open Qtile configuration file",
     ),
-        Key(
+    Key(
         [mod],
         "n",
-        lazy.spawn(
-            "alacritty --working-directory /home/cheto59/notes --command nvim"
-        ),
+        lazy.spawn("alacritty --working-directory /home/cheto59/notes --command nvim"),
         desc="Open Qtile configuration file",
     ),
     Key(
         [mod],
         "i",
-        lazy.spawn(
-            "alacritty -e /home/cheto59/go/bin/project-launcher", shell = True
-        ),
+        lazy.spawn(expanduser("~/.config/rofi/scripts/launcher_t1x.sh")),
+        desc="Open rofi in execution mode with a list of IDE scripts",
     ),
     Key(
         [mod],
@@ -221,17 +219,32 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayout(background="#a6e3a1",foreground="#000"),
-                widget.GroupBox(background="#1e1e2e", disable_drag = True, active="#cba6f7", fontsize=16, hide_unused=True, block_highlight_text_color="#f38ba8", borderwidth=1),
-                widget.WindowName(foreground="#f38ba8", max_chars=100, scroll=True, fontsize=15),
+                widget.CurrentLayout(background="#a6e3a1", foreground="#000"),
+                widget.GroupBox(
+                    background="#1e1e2e",
+                    disable_drag=True,
+                    active="#cba6f7",
+                    fontsize=16,
+                    hide_unused=True,
+                    block_highlight_text_color="#f38ba8",
+                    borderwidth=1,
+                ),
+                widget.WindowName(
+                    foreground="#f38ba8", max_chars=100, scroll=True, fontsize=15
+                ),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Systray(background="#1e1e2e", icon_size=25),
-                widget.Clock(background="#181825",foreground="#a6e3a1", fontsize=15,format="%Y-%m-%d %a %I:%M %p"),
+                widget.Clock(
+                    background="#181825",
+                    foreground="#a6e3a1",
+                    fontsize=15,
+                    format="%Y-%m-%d %a %I:%M %p",
+                ),
             ],
             23,
-            background = "#11111b",
-            foreground = "#000",
+            background="#11111b",
+            foreground="#000",
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
@@ -244,8 +257,15 @@ screens = [
 
 # Drag floating layouts.
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Drag(
+        [mod],
+        "Button1",
+        lazy.window.set_position_floating(),
+        start=lazy.window.get_position(),
+    ),
+    Drag(
+        [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
+    ),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
