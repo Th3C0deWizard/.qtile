@@ -114,7 +114,12 @@ keys = [
         lazy.spawn("alacritty --command yazi"),
         desc="Launch ranger file manager",
     ),
-    Key([mod], "s", lazy.spawn("gnome-screenshot -i"), desc="Launch gnome-screenshot"),
+    Key(
+        [mod],
+        "s",
+        lazy.spawn("flameshot gui"),
+        desc="Launch flameshot gui to make screenshots",
+    ),
     Key(
         [],
         "XF86AudioMute",
@@ -182,7 +187,7 @@ for i, group in enumerate(groups):
             Key(
                 [mod, "shift"],
                 workspace_number,
-                lazy.window.togroup(group.name, switch_group=True),
+                lazy.window.togroup(group.name, switch_group=False),
                 desc="Switch to & move focused window to group {}".format(group.name),
             ),
             # Or, use below if you prefer not to switch to that group.
