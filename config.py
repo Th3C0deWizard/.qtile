@@ -107,7 +107,8 @@ keys = [
         lazy.spawn("/home/cheto59/.config/rofi/scripts/launcher_t1"),
         desc="Launch terminal",
     ),
-    Key([mod], "b", lazy.spawn("firefox"), desc="Launch Browser"),
+    Key([mod], "b", lazy.spawn("firefox"), desc="Launch Firefox Browser"),
+    Key([mod], "z", lazy.spawn("zen-browser"), desc="Launch Zen Browser"),
     Key(
         [mod],
         "d",
@@ -116,9 +117,27 @@ keys = [
     ),
     Key(
         [mod],
+        "t",
+        lazy.spawn("thunar"),
+        desc="Launch thunar file manager",
+    ),
+    Key(
+        [mod],
         "s",
         lazy.spawn("flameshot gui"),
         desc="Launch flameshot gui to make screenshots",
+    ),
+    Key(
+        [],
+        "XF86AudioRaiseVolume",
+        lazy.spawn("pamixer -i 5"),
+        desc="Dncrease volume",
+    ),
+    Key(
+        [],
+        "XF86AudioLowerVolume",
+        lazy.spawn("pamixer -d 5"),
+        desc="Decrease volume",
     ),
     Key(
         [],
