@@ -29,6 +29,7 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from os.path import expanduser
+from qtile_extras.widget import ALSAWidget
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -105,7 +106,15 @@ keys = [
         [mod],
         "m",
         lazy.spawn("/home/cheto59/.config/rofi/scripts/launcher_t1"),
-        desc="Launch terminal",
+        desc="Launch rofi in desktop app search mode",
+    ),
+    Key(
+        [mod],
+        "v",
+        lazy.spawn(
+            "clipmenu -theme /home/cheto59/.config/rofi/launchers/type-1/style-6.rasi"
+        ),
+        desc="Launch rofi in desktop app search mode",
     ),
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch Firefox Browser"),
     Key([mod], "z", lazy.spawn("zen-browser"), desc="Launch Zen Browser"),
@@ -127,24 +136,24 @@ keys = [
         lazy.spawn("flameshot gui"),
         desc="Launch flameshot gui to make screenshots",
     ),
-    Key(
-        [],
-        "XF86AudioRaiseVolume",
-        lazy.spawn("pamixer -i 5"),
-        desc="Dncrease volume",
-    ),
-    Key(
-        [],
-        "XF86AudioLowerVolume",
-        lazy.spawn("pamixer -d 5"),
-        desc="Decrease volume",
-    ),
-    Key(
-        [],
-        "XF86AudioMute",
-        lazy.spawn("pamixer -t"),
-        desc="Mute Volume",
-    ),
+    # Key(
+    #     [],
+    #     "XF86AudioRaiseVolume",
+    #     lazy.spawn("pamixer -i 5"),
+    #     desc="Dncrease volume",
+    # ),
+    # Key(
+    #     [],
+    #     "XF86AudioLowerVolume",
+    #     lazy.spawn("pamixer -d 5"),
+    #     desc="Decrease volume",
+    # ),
+    # Key(
+    #     [],
+    #     "XF86AudioMute",
+    #     lazy.spawn("pamixer -t"),
+    #     desc="Mute Volume",
+    # ),
     Key(
         [],
         "XF86MonBrightnessUp",
